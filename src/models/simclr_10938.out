@@ -1,0 +1,54 @@
+2025-04-27 12:44:57,558 [INFO] - Starting training process with args: Namespace(accumulate_grad_batches=1, backbone='vit_b_16', batch_size=16, epochs=100, lambda1=1.0, lambda2=1.0, learning_rate=0.0001, num_workers=4, out_path='/nfs/tier2/users/sm1367/Cell_Model/outputs', save_after=10, train_path='/nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_train_dataset.csv', val_path='/nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_test_dataset.csv')
+2025-04-27 12:44:57,558 [INFO] - torch.backends.cudnn.benchmark set to True
+2025-04-27 12:44:57,587 [INFO] - Using device: cuda:3, limited to GPU 0
+2025-04-27 12:44:57,587 [INFO] - Created output directory: /nfs/tier2/users/sm1367/Cell_Model/outputs/vit_b_16_Adam_lr_0.0001_bs_16_e_100_simclr_lambda1_1.0_lambda2_1.0_test_7
+2025-04-27 12:44:57,592 [INFO] - Logging to /nfs/tier2/users/sm1367/Cell_Model/outputs/vit_b_16_Adam_lr_0.0001_bs_16_e_100_simclr_lambda1_1.0_lambda2_1.0_test_7/train.log
+2025-04-27 12:44:57,594 [INFO] - Saved arguments to args.txt and args.yaml
+2025-04-27 12:44:57,594 [INFO] - Setting up datasets and dataloaders...
+2025-04-27 12:44:57,594 [INFO] - Gathering data from /nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_train_dataset.csv
+2025-04-27 12:44:57,602 [INFO] - Creating pairs for 2367 images
+2025-04-27 12:44:57,904 [INFO] - Length of indices1: 2367
+2025-04-27 12:44:57,904 [INFO] - Length of indices2: 2367
+2025-04-27 12:44:57,904 [INFO] - Gathering data from /nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_test_dataset.csv
+2025-04-27 12:44:57,911 [INFO] - Creating pairs for 2462 images
+2025-04-27 12:44:58,238 [INFO] - Length of indices1: 2462
+2025-04-27 12:44:58,238 [INFO] - Length of indices2: 2462
+/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/utils/data/dataloader.py:554: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+2025-04-27 12:44:58,239 [INFO] - Train dataset size: 2367, Val dataset size: 2462
+2025-04-27 12:44:58,239 [INFO] - Train dataloader batches: 147, Val dataloader batches: 154
+2025-04-27 12:44:58,239 [INFO] - Initializing models with backbone: vit_b_16
+2025-04-27 12:44:59,229 [INFO] - Created shared backbone: vit_b_16
+2025-04-27 12:45:01,133 [INFO] - Backbone test output type: <class 'tuple'>
+2025-04-27 12:45:01,133 [INFO] - Backbone test output shapes: ['item 0: torch.Size([2, 1000])', "item 1: <class 'list'>"]
+2025-04-27 12:45:02,025 [INFO] - Created Siamese network with shared backbone
+2025-04-27 12:45:02,026 [INFO] - Initializing SimCLR with backbone: vit_b_16, output dimension: 128, temperature: 0.1
+2025-04-27 12:45:02,855 [INFO] - Using ViT-B/16 with hidden dimension 768
+2025-04-27 12:45:02,858 [INFO] - Created projection head: 768 -> 768 -> 128
+2025-04-27 12:45:02,859 [INFO] - Initializing SimCLR with backbone: vit_b_16, output dimension: 128, temperature: 0.1
+2025-04-27 12:45:03,736 [INFO] - Using ViT-B/16 with hidden dimension 768
+2025-04-27 12:45:03,741 [INFO] - Created projection head: 768 -> 768 -> 128
+2025-04-27 12:45:03,741 [INFO] - Created SimCLR models with shared backbone
+2025-04-27 12:45:03,794 [ERROR] - Error initializing models: CUDA error: invalid device ordinal
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Traceback (most recent call last):
+  File "/nfs/tier2/users/sm1367/Cell_Model/src/models/simclr_train_model.py", line 330, in run_training
+    siamese_model.to(device)
+  File "/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/nn/modules/module.py", line 987, in to
+    return self._apply(convert)
+  File "/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/nn/modules/module.py", line 639, in _apply
+    module._apply(fn)
+  File "/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/nn/modules/module.py", line 639, in _apply
+    module._apply(fn)
+  File "/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/nn/modules/module.py", line 662, in _apply
+    param_applied = fn(param)
+  File "/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/nn/modules/module.py", line 985, in convert
+    return t.to(device, dtype if t.is_floating_point() or t.is_complex() else None, non_blocking)
+RuntimeError: CUDA error: invalid device ordinal
+CUDA kernel errors might be asynchronously reported at some other API call,so the stacktrace below might be incorrect.
+For debugging consider passing CUDA_LAUNCH_BLOCKING=1.
+Using local Vision Transformer (vit_b_16) as backbone
+Detected backbone's final layer output features: 1000
+cls_head defined to accept 2000 input features.
+DONE

@@ -1,0 +1,37 @@
+# Core ML/Data libraries
+torch==1.7.1
+torchvision==0.8.2
+torchaudio==0.7.2 # From environment.yml
+numpy==1.19.2
+pandas # Often useful, though not explicitly listed, add if needed later
+scipy==1.5.4
+scikit-image==0.17.2
+Pillow==8.2.0
+matplotlib==3.3.4
+opencv-python==4.5.1.48
+
+# Augmentation
+albumentations==0.5.2
+imgaug==0.4.0 # Required by albumentations often
+
+# Utilities
+PyYAML==5.4.1
+tqdm==4.60.0
+tensorboard==2.4.0 # For logging, even if commented out in train.py
+protobuf==3.15.8 # Often needed by tensorboard/onnx
+onnx==1.9.0 # Listed in pip dependencies
+requests==2.25.1 # For potential data fetching or APIs
+
+# Note: Specific CUDA/MKL versions are often handled by PyTorch installation.
+# If specific CUDA version (10.2) is strictly required, install PyTorch following official instructions for that version.
+# Example: pip install torch==1.7.1+cu102 torchvision==0.8.2+cu102 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
+
+# Other dependencies from environment.yml (add if specific errors occur)
+# absl-py==0.12.0
+# cachetools==4.2.1
+# google-auth==1.29.0
+# google-auth-oauthlib==0.4.4
+# grpcio==1.36.1
+# markdown==3.3.4
+# werkzeug==1.0.1
+# ... and others ...

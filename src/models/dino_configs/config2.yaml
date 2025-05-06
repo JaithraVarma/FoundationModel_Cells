@@ -1,0 +1,33 @@
+model:
+  backbone: vit_b_16
+  out_dim: 4096
+loss:
+  student_temp: 0.1
+  teacher_temp: 0.04
+  center_momentum: 0.9
+  lambda1: 1.0
+  lambda2: 1.0
+  dino_norm_factor: 8.3  # math.log(4096)
+training:
+  batch_size: 48  # Per GPU, total = 48 * 4 = 192
+  learning_rate: 3e-4
+  epochs: 100
+  accumulate_grad_batches: 1
+  num_workers: 4
+  save_after: 10
+  momentum: 0.996  # Starting value, annealed to 0.999
+  use_cosine_scheduler: true
+data:
+  train_path: /nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_train_dataset.csv
+  val_path: /nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_test_dataset.csv
+  out_path: /nfs/tier2/users/sm1367/Cell_Model/outputs
+augmentation:
+  random_resized_crop:
+    scale: [0.5, 1.0]
+    ratio: [0.75, 1.33]
+  hflip_prob: 0.5
+  brightness_jitter: 0.4
+  contrast_jitter: 0.4
+  saturation_jitter: 0.4
+  hue_jitter: 0.1
+  gaussian_blur_prob: 0.0

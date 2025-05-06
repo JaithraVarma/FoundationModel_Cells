@@ -1,0 +1,38 @@
+2025-04-27 12:44:53,592 [INFO] - Starting training process with args: Namespace(accumulate_grad_batches=1, backbone='vit_b_16', batch_size=8, clip_grad_norm=3.0, dino_dim=2048, epochs=100, lambda1=1.0, lambda2=1.5, learning_rate=0.0001, num_views=8, num_workers=4, out_path='/nfs/tier2/users/sm1367/Cell_Model/outputs', save_after=10, sinkhorn_iters=3, student_temp=0.1, teacher_momentum=0.996, teacher_temp=0.04, test_num=6, train_path='/nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_train_dataset.csv', val_path='/nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_test_dataset.csv', warmup_epochs=10, weight_decay=0.04)
+2025-04-27 12:44:53,596 [INFO] - Run name: vit_b_16_Adam_lr_0.0001_bs_8_e_100_dino_lambda1_1.0_lambda2_1.5_views_8_test_6
+2025-04-27 12:44:53,596 [INFO] - Output directory: /nfs/tier2/users/sm1367/Cell_Model/outputs/vit_b_16_Adam_lr_0.0001_bs_8_e_100_dino_lambda1_1.0_lambda2_1.5_views_8_test_6
+2025-04-27 12:44:53,596 [INFO] - Using device: cpu
+2025-04-27 12:44:53,597 [INFO] - Gathering data from /nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_train_dataset.csv
+2025-04-27 12:44:53,607 [INFO] - Creating pairs for 2367 images
+2025-04-27 12:44:53,894 [INFO] - Length of indices1: 2367
+2025-04-27 12:44:53,894 [INFO] - Length of indices2: 2367
+2025-04-27 12:44:53,894 [INFO] - Gathering data from /nfs/tier2/users/sm1367/Cell_Model/csv_creator/2d_ctc_test_dataset.csv
+2025-04-27 12:44:53,905 [INFO] - Creating pairs for 2462 images
+2025-04-27 12:44:54,245 [INFO] - Length of indices1: 2462
+2025-04-27 12:44:54,246 [INFO] - Length of indices2: 2462
+/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/utils/data/dataloader.py:554: UserWarning: This DataLoader will create 4 worker processes in total. Our suggested max number of worker in current system is 2, which is smaller than what this DataLoader is going to create. Please be aware that excessive worker creation might get DataLoader running slow or even freeze, lower the worker number to avoid potential slowness/freeze if necessary.
+  warnings.warn(_create_warning_msg(
+2025-04-27 12:44:54,251 [INFO] - Training samples: 2367
+2025-04-27 12:44:54,251 [INFO] - Validation samples: 2462
+2025-04-27 12:44:54,251 [INFO] - Batch size: 8
+2025-04-27 12:44:54,251 [INFO] - Initializing models with backbone: vit_b_16
+2025-04-27 12:44:56,158 [INFO] - Initializing Multi-View DINO with backbone: vit_b_16, output dimension: 2048
+2025-04-27 12:44:57,671 [INFO] - Initializing teacher with student weights and freezing parameters
+2025-04-27 12:44:57,700 [INFO] - Initializing Multi-View DINO with backbone: vit_b_16, output dimension: 2048
+2025-04-27 12:44:59,612 [INFO] - Initializing teacher with student weights and freezing parameters
+2025-04-27 12:44:59,649 [INFO] - Learning rate: 0.0001
+2025-04-27 12:44:59,649 [INFO] - Weight decay: 0.04
+2025-04-27 12:44:59,649 [INFO] - DINO lambda1: 1.0
+2025-04-27 12:44:59,649 [INFO] - Siamese lambda2: 1.5
+2025-04-27 12:44:59,649 [INFO] - Number of views: 8
+/nfs/tier2/users/sm1367/anaconda3/envs/cellmodel/lib/python3.8/site-packages/torch/cuda/amp/grad_scaler.py:118: UserWarning: torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.
+  warnings.warn("torch.cuda.amp.GradScaler is enabled, but CUDA is not available.  Disabling.")
+2025-04-27 12:44:59,654 [INFO] - Starting training for 100 epochs
+2025-04-27 12:44:59,654 [INFO] - --- Epoch [1/100] ---
+2025-04-27 12:44:59,654 [INFO] -   Learning rate factor: 0.000000
+Epoch 1/100 Train:   0%|          | 0/295 [00:00<?, ?it/s]Using local Vision Transformer (vit_b_16) as backbone
+Detected backbone's final layer output features: 1000
+cls_head defined to accept 2000 input features.
+/var/lib/slurm/slurmd/job10937/slurm_script: line 20: 3365840 Killed                  python /nfs/tier2/users/sm1367/Cell_Model/src/models/dino_new2_2504_train.py --test_num 6
+DONE
+slurmstepd-hslab-hcmp1: error: Detected 1 oom-kill event(s) in StepId=10937.batch. Some of your processes may have been killed by the cgroup out-of-memory handler.
